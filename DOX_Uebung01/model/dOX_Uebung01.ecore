@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dOX_Uebung01" nsURI="http://www.example.org/dOX_Uebung01" nsPrefix="dOX_Uebung01">
+  <eClassifiers xsi:type="ecore:EClass" name="Forum">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="benutzer" upperBound="-1"
+        eType="#//Benutzer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unterforum" upperBound="-1"
+        eType="#//Unterforum"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Unterforum" eSuperTypes="#//Forum">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="moderator" eType="#//Moderator"
+        eOpposite="#//Moderator/unterforum"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="thread" upperBound="-1"
+        eType="#//Thread"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Beitrag">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="benutzer" lowerBound="1"
+        eType="#//Benutzer" eOpposite="#//Benutzer/beitrag"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Moderator" eSuperTypes="#//Benutzer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="unterforum" upperBound="-1"
+        eType="#//Unterforum" eOpposite="#//Unterforum/moderator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Thread">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sticky" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beitrag" lowerBound="1"
+        upperBound="-1" eType="#//Beitrag"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Benutzer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="BenutzerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Passwort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beitrag" upperBound="-1"
+        eType="#//Beitrag" eOpposite="#//Beitrag/benutzer"/>
+  </eClassifiers>
+</ecore:EPackage>
